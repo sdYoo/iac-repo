@@ -1,7 +1,7 @@
 ---
 - hosts: webs
   tasks:
-    - name: "Installation component"
+    - name: "Installation component1"
       yum: name={{ item }} state=latest
       with_items:
         - openssl-devel
