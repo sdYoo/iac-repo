@@ -1,0 +1,27 @@
+---
+- hosts: webs
+  tasks:
+    - name: "Installation component"
+      yum: name={{ item }} state=latest
+      with_items:
+        - openssl-devel
+        - zlib-devel
+        - pcre-devel
+        - gcc
+        - gcc-c++
+         - name: "Unpack the source package"
+      unarchive: src=nginx-1.4.7.tar.gz dest=/root
+         - name: "Compile"
+      shell: chdir=/root/nginx-1.4.7 ./configure && make && make install
+         - name: "Distribution Profile"
+      copy: src=nginx.conf dest=/usr/local/nginx/conf/nginx.conf
+         - name: "Start nginx"
+      shell: /usr/local/nginx/sbin/nginx
+         - name: "Installing the djk environment"
+      yum: name=java-1.8.0-openjdk state=latest
+         - name: "Create tomcat directory"
+      shell: mkdir /opt/tomcat
+         - name: "Unpack the tomcat source package"
+      unarchive: src=apache-tomcat-7.0.47.tar.gz dest=/opt/tomcat
+         - name: "Start tomcat"
+      shell: nohup /opt/tomcat/apache-tomcat-7.0.47/bin/startup.sh &
