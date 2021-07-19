@@ -1,5 +1,5 @@
 ---
-- hosts: webs
+- hosts: yoo-kym-app
   tasks:
     - name: "Installation component1"
       yum: name={{ item }} state=latest
