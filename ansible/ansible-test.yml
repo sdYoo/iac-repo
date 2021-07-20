@@ -1,7 +1,6 @@
 ---
-  - name: "Local Test"
-    hosts: localhost
-    connection: local
+  - name: "yoo-kym-app"
+    hosts: yoo-kym-app
     tasks:
     - name: "pwd command"
       shell: "pwd"
